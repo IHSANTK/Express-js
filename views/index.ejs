@@ -1,0 +1,71 @@
+
+<html>
+  <head>
+    <title>User List</title>
+    <style>
+    
+      table {
+        border-collapse: collapse;
+      }
+      table th {
+        width: 200px;
+        background-color: rgb(77, 74, 214);
+      }
+      table td {
+        background-color: rgb(100, 204, 126);
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        padding-left: 15px;
+        padding-right: 10px;
+        padding-top: 0px;
+      }
+      a {
+        text-decoration: none;
+        color: rgb(0, 0, 0);
+      }
+      #adduser {
+        background-color: rgb(226, 160, 191);
+        border: none;
+        height: 25px;
+        color: black;
+        border-radius: 2px;
+        margin-left: 450px;
+      }
+    </style>
+  </head>
+  <body>
+    <div style="display: flex;justify-content: center;">
+      <div>
+        <h1 style="margin-left: 430px;font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">User List</h1>
+        <table border="">
+          <tr>
+            <th>Name</th>
+            <th>Number</th>
+            <th>Email</th>
+            <th>Password</th>
+            <th style="width: 200px;">Action</th>
+          </tr>
+          <% data.forEach(user => { %>
+            <tr>
+              <td><%= user.name %></td>
+              <td><%= user.number %></td>
+              <td><%= user.email %></td>
+              <td><%= user.password %></td>
+              <td>
+                <button style="margin-left:20px;margin-top:10px;background-color: rgb(49, 68, 236);border:none;border-radius:3px; color: black;">
+                  <a href="/form?id=<%= user.id %>">Edit</a></button>
+                <form style="display: inline-block;" method="post" action="/delete-user">
+                  <input type="hidden" name="id" value="<%= user.id %>">
+                  <button type="submit" style="margin-left: 50px;margin-top:10px;background-color: rgb(175, 51, 51);border:none;border-radius:3px;">Delete</button>
+                </form>
+              </td>
+            </tr>
+          <% }); %>
+        </table>
+        <br>
+        <button id="adduser">
+          <a href="/form">Add User</a>
+        </button>
+      </div>
+    </div>
+  </body>
+</html>
